@@ -81,7 +81,7 @@
           v-show="checkVoteTime === false"
           style="margin-top: 10px; color: #ff3445; font-size: 14px"
         >
-          投票時間為：3/21 9:00 ~ 3/30 19:00
+          投票時間為：3/21 00:00 ~ 3/31 23:59
         </p>
         <a class="close-btn" href="javascript:;" @click="popclose"></a>
       </div>
@@ -159,8 +159,9 @@ export default {
       .get("https://computer.bkhole.app/artworklists")
       .then((response) => {
         this.groups = response.data;
+        this.groups.sort(function() {return (0.5-Math.random());});
         this.loading = false;
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -194,14 +195,14 @@ export default {
       if (!this.input.email || emailRegxp.test(this.input.email) == false) {
         //空值或錯誤
         this.warningtext = "＊email格式有誤，請重新填寫";
-        console.log("Email沒有提交");
+        // console.log("Email沒有提交");
         this.popStepChange(1);
       } else if (this.input.email && this.checkEmailnotExis === 1) {
         //檢查Email沒有重複
         axios
           .post("https://computer.bkhole.app/votelists", this.input)
-          .then((response) => {
-            console.log(response.data);
+          .then(() => { //response
+            // console.log(response.data);
             this.cancelHandler();
           })
           .catch(function (error) {
@@ -211,7 +212,7 @@ export default {
       } else if (this.input.email && this.checkEmailnotExis !== 1) {
         //檢查Email有重複
         this.warningtext = "＊您已經投過票了，謝謝參與！";
-        console.log("Email存在");
+        // console.log("Email存在");
         this.popStepChange(1);
       }
     },
@@ -244,8 +245,8 @@ export default {
       }
     },
     timeCheck() {
-      let voteStart = new Date(2022, 3, 21, 9, 0, 0, 0);
-      let voteEnd = new Date(2022, 3, 30, 19, 0, 0, 0);
+      let voteStart = new Date(2022, 3, 21, 0, 0, 0, 0);
+      let voteEnd = new Date(2022, 3, 31, 23, 59, 0, 0);
       let now = new Date(2022, 3, 22);
       // console.log(voteStart+"\n"+voteEnd+"\n"+now);
       if (now < voteStart) {
