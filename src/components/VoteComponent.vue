@@ -140,18 +140,12 @@ export default {
       warningtext: "",
       checkVoteTime: false,
       checkEmailnotExis: null,
-      // nowTime: null,
     };
   },
   computed: {
     popdata() {
       return this.groups.find((item) => item.id === this.workid);
     },
-    // voteTimeCheck(){
-    //   let now = new Date();
-    //   console.log(now);
-    //   return this.voteTime = now;
-    // },
   },
   mounted() {
     this.loading = true;
@@ -204,11 +198,12 @@ export default {
           .then(() => { //response
             // console.log(response.data);
             this.cancelHandler();
+            this.popStepChange(2);
           })
           .catch(function (error) {
             console.log(error);
+            this.popStepChange(1);
           });
-        this.popStepChange(2);
       } else if (this.input.email && this.checkEmailnotExis !== 1) {
         //檢查Email有重複
         this.warningtext = "＊您已經投過票了，謝謝參與！";
@@ -226,13 +221,14 @@ export default {
       this.popStepChange(0);
       this.workid = "";
       this.warningtext = "";
-      (this.checkEmailnotExis = null), this.cancelHandler();
+      this.checkEmailnotExis = null;
+      this.cancelHandler();
     },
     popopen(workid) {
       this.timeCheck();
       this.popToggle = true;
       this.workid = workid;
-      this.input.workid = workid;
+      this.input.workid = workid.toString();
     },
     popStepChange(step) {
       if (step === 0) {
@@ -251,7 +247,7 @@ export default {
       // console.log(voteStart+"\n"+voteEnd+"\n"+now);
       if (now < voteStart) {
         this.checkVoteTime = false;
-        console.log("還不能投票");
+        console.log("投票尚未開始");
       } else if (now > voteEnd) {
         this.checkVoteTime = false;
         console.log("投票已結束");
