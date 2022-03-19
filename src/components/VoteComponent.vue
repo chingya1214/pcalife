@@ -173,13 +173,13 @@ export default {
       //Email沒有填寫-> step1
       //已填寫過 checkEmailnotExis = 2 -> step1
       axios
-        .get("http://localhost:8888/content?email=" + this.input.email)
+        .get("https://computer.bkhole.app/votelists?email=" + this.input.email)
         .then((response) => {
           if (response.data.length > 0) {
-            console.log("response.data.length:" + response.data.length);
+            // console.log("response.data.length:" + response.data.length);
             this.checkEmailnotExis = 2;
           } else {
-            console.log("response.data.length:" + response.data.length);
+            // console.log("response.data.length:" + response.data.length);
             this.checkEmailnotExis = 1;
           }
           this.checkEmail();
@@ -199,7 +199,7 @@ export default {
       } else if (this.input.email && this.checkEmailnotExis === 1) {
         //檢查Email沒有重複
         axios
-          .post("http://localhost:8888/content", this.input)
+          .post("https://computer.bkhole.app/votelists", this.input)
           .then((response) => {
             console.log(response.data);
             this.cancelHandler();
