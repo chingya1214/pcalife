@@ -94,7 +94,7 @@
         <input type="text" v-model.trim="input.name" />
         <h4>手機號碼</h4>
         <input type="text" v-model.trim="input.phone" />
-        <a class="group-btn" href="javascript:;" @click="popStepChange(2)"
+        <a class="group-btn" href="javascript:;" @click="submitHandler"
           >送出投票</a
         >
         <p>
