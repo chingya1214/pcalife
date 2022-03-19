@@ -86,7 +86,7 @@
         <a class="close-btn" href="javascript:;" @click="popclose"></a>
       </div>
       <div class="popvote-box step1" v-show="popConfirmStep === 1">
-        <h3>確認投票</h3>
+        <h3 class="step1title"><img src="../assets/img/votestep1.png" width="100%" alt=""></h3>
         <h4>*您的Email</h4>
         <input type="text" v-model.trim="input.email" />
         <p>如果您願意參與本次抽獎，請協助填寫姓名、電話</p>
@@ -94,7 +94,7 @@
         <input type="text" v-model.trim="input.name" />
         <h4>手機號碼</h4>
         <input type="text" v-model.trim="input.phone" />
-        <a class="group-btn" href="javascript:;" @click="submitHandler"
+        <a class="group-btn" href="javascript:;" @click="popStepChange(2)"
           >送出投票</a
         >
         <p>
@@ -103,7 +103,7 @@
         <a class="close-btn" href="javascript:;" @click="popclose"></a>
       </div>
       <div class="popvote-box step2" v-show="popConfirmStep === 2">
-        <h3>投票完成</h3>
+        <h3 class="step2title"><img src="../assets/img/votestep2.png" width="100%" alt=""></h3>
         <h4>感謝您的投票！</h4>
         <a class="group-btn" href="javascript:;" @click="popclose"
           >回到提案總覽</a
