@@ -37,18 +37,15 @@
     <div class="title-box">
       <h1 class="vote-title">投票專區</h1>
       <p>
-        投票注意事項<br />
-        投票期間：2022 年 03 月 21 日（一） 上午 10:00 ~ 2022 年 03 月 31
-        日（四）中午 12:00。<br />
-        本次投票採用 Facebook 臉書帳號投票，所有投票者皆需經過 Facebook
-        臉書登入認證。<br />
-        活動期間，每一個追夢計畫每人每天皆有一票可以表達支持，請廣邀好友踴躍投票。<br />
-        為了投票的公平性，嚴格禁止灌票行為，若有發現任何單位或個人進行不當投票行為，經查證若為決選團體所為，將取消該團體參賽資格。<br />
-        結果公布：整合評審面試分數（60%）+ 網路投票分數（40%），追夢得主將於
-        2020 年 12 月 10 日（四） 下午 7:00 公布。<br />
-        若您使用 APP（例如：LINE）打開此網站，由於 APP
-        內建瀏覽器問題，可能會造成無法投票，建議您使用手機瀏覽器（例如：Google
-        Chrome 或 Safari）開啟。
+        保誠創新智造所 - 最終決選人氣投票<br/>
+        4/6前投票給你喜愛的團隊，人氣投票前三名的團隊將可獲得最終決選的加分！<br />
+        只要完成投票且填寫個人姓名與手機，就有機會獲得保誠創新智造所周邊組合包！<br />
+        投票時間｜即日起至2022年4月6日（三）23:59為止<br />
+        投票規則｜一個E-mail 帳號可進行一次投票<br>
+        ｜人氣最高的前三名， 將在「最終決選」分別獲得「3分」、「2分」、「1分加分機制」的額外加分。<br>
+        抽獎獎項｜保誠創新智造所禮包 x 5名、家樂福100元禮券 x 5名。<br>
+        抽獎方式｜投票時完整填寫姓名、手機號碼，就有機會參與抽獎。我們將抽出10名幸運兒，後續將直接連繫您禮物寄送事宜，並將於4/15（五）公告幸運兒名單於保誠創新智造所計畫網站。<br>
+        注意事項｜(1) 本活動獎項以主辦單位規劃獎品為準，中獎資格不得轉讓他人，所有獎品皆以實體為準，中獎者不得要求更換獎品、顏色及款式等或折換現金，主辦單位保留更換其他等值獎項之權利。(2)本活動若有其他未盡事宜，活動辦法有任何變更或修改，依活動網站公告為主，不再另行通知。主辦單位保留取消、終止、修改或暫停本活動權利，並保有最終釋義權。<br>
       </p>
     </div>
     <div v-if="loading">Loading...</div>
@@ -57,7 +54,7 @@
         <div class="group-item">
           <div class="group-title">{{ item.teamname }}</div>
           <div class="group-img">
-            <img :src="item.img[0].url" width="100%" alt="" />
+            <img :src="item.cover[0].url" width="100%" alt="" />
           </div>
           <div class="group-bottom">
             <div class="group-proposal">提案：{{ item.title }}</div>
@@ -100,7 +97,7 @@
           v-show="checkVoteTime === false"
           style="margin-top: 10px; color: #ff3445; font-size: 14px"
         >
-          投票時間為：3/21 00:00 ~ 3/31 23:59
+          投票時間為：3/23 00:00 ~ 4/6 23:59
         </p>
         <a class="close-btn" href="javascript:;" @click="popclose"></a>
       </div>
@@ -271,15 +268,16 @@ export default {
         this.popToggle = false;
         this.popConfirmStep = step;
       } else if (step === 1) {
+        if(!this.checkVoteTime)return;
         this.popConfirmStep = step;
       } else if (step === 2) {
         this.popConfirmStep = step;
       }
     },
     timeCheck() {
-      let voteStart = new Date(2022, 3, 21, 0, 0, 0, 0);
-      let voteEnd = new Date(2022, 3, 31, 23, 59, 0, 0);
-      let now = new Date(2022, 3, 22);
+      let voteStart = new Date(2022, 3, 23, 0, 0, 0, 0);
+      let voteEnd = new Date(2022, 4, 6, 23, 59, 0, 0);
+      let now = new Date();
       // console.log(voteStart+"\n"+voteEnd+"\n"+now);
       if (now < voteStart) {
         this.checkVoteTime = false;
@@ -557,6 +555,7 @@ footer p {
   text-align: center;
   letter-spacing: 0.135em;
   color: #000000;
+  margin-bottom: 1rem;
 }
 
 .vote-title::before {

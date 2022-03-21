@@ -120,7 +120,8 @@
 }
 
 .popup-box,.step1 {
-  max-width: 800px;
+  /* max-width: 800px; */
+  max-width: 660px;
 }
 .step2 {
   max-width: 500px;
