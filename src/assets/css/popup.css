@@ -166,6 +166,9 @@
 
 /* phones */
 @media (max-width: 576px) {
+  .step1{
+    border-radius: 20px;
+  }
   .step2 {
     width: 90%;
   }
@@ -177,15 +180,24 @@
   .step1title {
     width: 100%;
     padding: 0px;
+    margin: 0 auto 15px;
   }
 
   .popvote-box > h4 {
-    font-size: 20px;
-    line-height: 28px;
+    /* font-size: 20px;
+    line-height: 28px; */
+    font-size: 18px;
+    line-height: 1.5;
   }
 
   .popvote-box > p {
-    font-size: 16px;
+    /* font-size: 16px;
+    line-height: 20px; */
+    font-size: 14px;
     line-height: 20px;
+  }
+  .popvote-box > input{
+    font-size: 16px;
+    line-height: 1.5;
   }
 }

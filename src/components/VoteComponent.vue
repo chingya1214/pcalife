@@ -1,7 +1,26 @@
 <template>
+<div>
+  <header>
+    <div class="logo">
+      <img src="@/assets/img/header.png" alt="">
+    </div>
+    <input class="menu-btn" type="checkbox" id="menu-btn" />
+    <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+    <nav>
+      <ul>
+        <li><a href="https://pcalifeinnovation.com.tw/#news">最新消息</a></li>
+        <li><a href="https://pcalifeinnovation.com.tw/#about">關於保誠創新智造所</a></li>
+        <li><a href="https://pcalifeinnovation.com.tw/#video">概念影片</a></li>
+        <li><a href="https://pcalifeinnovation.com.tw/#bonus">競賽獎金</a></li>
+        <li><a href="https://pcalifeinnovation.com.tw/#review">評審內容</a></li>
+        <li><a href="https://pcalifeinnovation.com.tw/#join">徵件辦法</a></li>
+      </ul>
+    </nav>
+
+  </header>
   <div id="vote">
     <div class="banner">
-      <img src="../assets/img/banner.svg" width="100%" alt="" />
+      <img src="../assets/img/banner.png" width="100%" alt="" />
       <img
         class="logoimg"
         src="../assets/img/pcalifelogo.svg"
@@ -19,7 +38,7 @@
       <h1 class="vote-title">投票專區</h1>
       <p>
         投票注意事項<br />
-        投票期間：2020 年 11 月 24 日（二） 上午 10:00 ~ 2020 年 12 月 10
+        投票期間：2022 年 03 月 21 日（一） 上午 10:00 ~ 2022 年 03 月 31
         日（四）中午 12:00。<br />
         本次投票採用 Facebook 臉書帳號投票，所有投票者皆需經過 Facebook
         臉書登入認證。<br />
@@ -116,6 +135,20 @@
     </div>
     <div v-else />
   </div>
+  <footer>
+    <img src="@/assets/img/robot.png" alt="">
+    <ul>
+      <li><a href="https://www.pcalife.com.tw/zh/disclaimer/" target="_blank">網站綜合聲明</a></li>
+      <li><a href="https://www.pcalife.com.tw/zh/outsourcing-notice/" target="_blank">保險委外作業說明</a></li>
+      <li><a href="https://www.pcalife.com.tw/zh/financial-friendly/" target="_blank">金融友善服務專區</a></li>
+      <li><a href="https://www.pcalife.com.tw/zh/gdpr-privacy-notice/" target="_blank">GDPR隱私權告知事項</a></li>
+      <li><a href="https://www.pcalife.com.tw/zh/law-advocacy/" target="_blank">法令宣導</a></li>
+    </ul>
+    <p>客戶服務專線 : 0809-0809-68<br>(服務時間 : 週一 ~ 週五 08:00~20:00 及週六、日及例假日 09:00~17:30)</p>
+    <p>建議使用Chrome、iOS/Safari、Microsoft Edge 以取得最佳瀏覽效果</p>
+    <p>保誠人壽保險股份有限公司版權所有<br>Copyright © 2022 PCA Life Assurance Co., Ltd. All rights reserved.</p>
+  </footer>
+  </div>
 </template>
 
 <script>
@@ -139,8 +172,8 @@ export default {
       workid: "",
       warningtext: "",
       checkVoteTime: false,
-      checkEmailnotExis: null,
-    };
+      checkEmailnotExis: null
+    }
   },
   computed: {
     popdata() {
@@ -193,6 +226,7 @@ export default {
         this.popStepChange(1);
       } else if (this.input.email && this.checkEmailnotExis === 1) {
         //檢查Email沒有重複
+        this.input.workid = toString(this.input.workid)
         axios
           .post("https://computer.bkhole.app/votelists", this.input)
           .then(() => { //response
@@ -223,12 +257,14 @@ export default {
       this.warningtext = "";
       this.checkEmailnotExis = null;
       this.cancelHandler();
+      document.body.style.overflow = "scroll";
     },
     popopen(workid) {
       this.timeCheck();
       this.popToggle = true;
       this.workid = workid;
       this.input.workid = workid.toString();
+      document.body.style.overflow = "hidden";
     },
     popStepChange(step) {
       if (step === 0) {
@@ -259,13 +295,197 @@ export default {
   },
 };
 </script>
-
 <style scoped>
 @import "../assets/css/popup.css";
+  ul ,li{
+    list-style: none;
+    margin:0;
+    padding-inline-start: 0px;
+  }
+  a{
+    color:#000000;
+    text-decoration: none !important;
+  }
+  header{
+    display: flex;
+    justify-content: flex-end;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    margin: 32px 50px 0px 50px;
+    height:50px;
+    z-index: 6;
+  }
+  header .logo{
+    /* width:360px; */
+    height: 50px;
+    position: absolute;
+    left: 0;
+    cursor: pointer;
+  }
+  header .logo img{
+    /* width:100%; */
+    height: 100%;
+  }
+  
+  header nav ul{
+      display: flex;
+      font-size: 16px;
+      align-items: center;
+      height:100%;
+  }
+  header nav li{
+    cursor: pointer;
+    position: relative;
+    font-weight: 400;
+    line-height: 24px;
+    padding: 13px 20px;
+  }
+  
+  li:hover a,li a:hover{
+    color:#ED1B2D;
+    transition: .3s;
+    transition-timing-function: cubic-bezier(.58,.3,.005,1);
+  }
+  header nav li:hover::after{
+    content:"";
+    background-color: #ED1B2D;
+    bottom: 0;
+    height: 3px;
+    width: 100%;
+    left: 0;
+    display: block;
+    position: absolute;
+    transition: .3s;
+    transition-timing-function: cubic-bezier(.58,.3,.005,1);
+    box-sizing: border-box;
+  }
+  /* menu icon */
+
+header .menu-icon {
+  cursor: pointer;
+  display: none;
+  float: right;
+  padding: 28px 20px;
+  position: relative;
+  user-select: none;
+
+}
+
+header .menu-icon .navicon {
+  background: #333;
+  display: block;
+  height: 3px;
+  position: relative;
+  transition: background .2s ease-out;
+  width: 24px;
+}
+
+header .menu-icon .navicon:before,
+header .menu-icon .navicon:after {
+  background: #333;
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  transition: all .2s ease-out;
+  width: 100%;
+}
+
+header .menu-icon .navicon:before {
+  top: 8px;
+}
+
+header .menu-icon .navicon:after {
+  top: -8px;
+}
+/* menu btn */
+
+header .menu-btn {
+  display: none;
+}
+
+header .menu-btn:checked ~ .menu-icon .navicon {
+  background: transparent;
+}
+
+header .menu-btn:checked ~ .menu-icon .navicon:before {
+  transform: rotate(-45deg);
+}
+
+header .menu-btn:checked ~ .menu-icon .navicon:after {
+  transform: rotate(45deg);
+}
+
+header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
+header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
+  top: 0;
+}
+
+/* 48em = 768px */
+
+/* @media (min-width: 48em) {
+  header li {
+    float: left;
+  }
+  header li a {
+    padding: 20px 30px;
+  }
+  header .menu {
+    clear: none;
+    float: right;
+    max-height: none;
+  }
+  header .menu-icon {
+    display: none;
+  }
+} */
+footer{
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 0px 20px 90px 20px;
+  background-image:url('~@/assets/img/footer.png');
+}     
+footer img{
+  width: 291px;
+  margin:0 auto 50px;
+  display: block;
+}
+
+footer ul{
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  margin-bottom: 60px;
+  flex-wrap: wrap;
+  font-size: 18px;
+}
+footer a{
+  color:#fff;
+}
+footer li{
+  font-weight: bold;
+  text-decoration: underline;
+  line-height: 22.5px;
+  color:#fff;
+  cursor: pointer;
+  padding: 13px 20px;
+}
+footer p {
+  text-align: center;
+  margin-bottom:20px;
+  font-size:12px;
+  color:#fff;
+}
+
 #vote {
   position: relative;
   padding: 50px 207px 150px 207px;
   overflow-x: hidden;
+  max-width: 1400px;
+  margin: 0 auto;
+  z-index: 5;
 }
 .banner {
   position: relative;
@@ -373,7 +593,7 @@ export default {
 .group-item {
   margin: 0 auto;
   border: 2px solid #000000;
-  border-radius: 60px;
+  border-radius: 30px;
   padding: 32px 39px;
   transition: 0.3s;
 }
@@ -386,7 +606,8 @@ export default {
   font-family: "Quicksand";
   font-style: normal;
   font-weight: 700;
-  font-size: 24px;
+  /* font-size: 24px; */
+  font-size: 20px;
   line-height: 30px;
   letter-spacing: 0.135em;
   padding: 0 18px;
@@ -425,6 +646,13 @@ export default {
   line-height: 22px;
   letter-spacing: 0.135em;
   margin: 0 10px 0 0;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  height: 46px;
+  overflow: hidden;
 }
 
 .group-btn {
@@ -433,17 +661,20 @@ export default {
   border-radius: 15px;
   font-family: "Quicksand";
   font-weight: 700;
-  font-size: 18px;
+  /* font-size: 18px; */
   line-height: 25px;
   text-decoration: none;
   text-align: center;
   letter-spacing: 0.135em;
   color: #ffffff;
-  padding: 18px 20px;
+  /* padding: 18px 20px; */
   margin: 0;
   cursor: pointer;
-  min-width: 140px;
+  /* min-width: 140px; */
   transition: 0.3s;
+  font-size: 16px;
+  padding: 12px 20px;
+  min-width: 116px;
 }
 .group-btn:hover {
   background: #df2f3e;
@@ -466,6 +697,46 @@ export default {
   #vote {
     padding: 0 120px;
   }
+  header{
+    min-height: 58px;
+    justify-content: space-between;
+  }
+  header .logo{
+    position: relative;
+  }
+  nav{
+    width:100%;
+    left: 0;
+    position: absolute;
+    top:50px;
+  }
+  header nav ul{
+    top: 50px;
+    left: 0;
+    background-color: #fff;
+    display: block;
+    width: 100%;
+    height:auto;
+  }
+  header nav ul li{
+    width:100%;
+    color: #68737A;
+  }
+  header nav li:hover::after{
+    opacity: 0;
+  }
+  nav{
+    max-height: 0;
+    overflow: hidden;
+    transition: all .2s ease-out;
+  }
+  header .menu-btn:checked ~ nav {
+    max-height: 255px;
+    transition: all .2s ease-out;
+  }
+  header .menu-icon{
+    display: inline-block;
+  }
 }
 @media (max-width: 992px) {
   #vote {
@@ -482,6 +753,19 @@ export default {
   #vote {
     padding: 0 100px;
   }
+  header{
+    margin: 32px 10px 0px 10px;
+  }
+  .popup-box{
+    border-radius: 25px;
+  }
+  footer ul{
+    font-size: 14px;
+  }
+  footer li{
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
 }
 
 /* phones */
@@ -496,6 +780,9 @@ export default {
   .group-bottom {
     display: block;
     text-align: center;
+  }
+  .group-title{
+    padding-right: 40px;
   }
   .group-proposal {
     display: block;
