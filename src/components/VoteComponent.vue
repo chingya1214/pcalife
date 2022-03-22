@@ -37,15 +37,15 @@
     <div class="title-box">
       <h1 class="vote-title">投票專區</h1>
       <p>
-        保誠創新智造所 - 最終決選人氣投票<br/>
-        4/6前投票給你喜愛的團隊，人氣投票前三名的團隊將可獲得最終決選的加分！<br/>
+        保誠創新智造所 - 最終決選人氣投票<br/><br/>
+        4/6前投票給你喜愛的團隊，人氣投票前三名的團隊將可獲得最終決選的加分！<br/><br/>
         只要完成投票且填寫個人姓名與手機，就有機會獲得保誠創新智造所周邊組合包！<br/><br/>
-        <b>投票時間</b>｜即日起至2022年4月6日（三）23:59為止<br/>
-        <b>投票規則</b>｜一個E-mail 帳號可進行一次投票<br>
-        <b>加分機制</b>｜人氣最高的前三名， 將在「最終決選」分別獲得「3分」、「2分」、「1分」的額外加分。<br>
-        <b>抽獎獎項</b>｜保誠創新智造所禮包 x 5名、家樂福100元禮券 x 5名。<br>
-        <b>抽獎方式</b>｜投票時完整填寫姓名、手機號碼，就有機會參與抽獎。我們將抽出10名幸運兒，後續將直接連繫您禮物寄送事宜，並將於4/15（五）公告幸運兒名單於保誠創新智造所計畫網站。<br><br>
-        <b>注意事項</b>｜(1) 本活動獎項以主辦單位規劃獎品為準，中獎資格不得轉讓他人，所有獎品皆以實體為準，中獎者不得要求更換獎品、顏色及款式等或折換現金，主辦單位保留更換其他等值獎項之權利。(2)本活動若有其他未盡事宜，活動辦法有任何變更或修改，依活動網站公告為主，不再另行通知。主辦單位保留取消、終止、修改或暫停本活動權利，並保有最終釋義權。<br>
+        <b>【投票時間】</b><br/><br/>即日起至2022年4月6日（三）23:59為止<br/><br/>
+        <b>【投票規則】</b><br/><br/>一個E-mail 帳號可進行一次投票<br><br/>
+        <b>【加分機制】</b><br/><br/>人氣最高的前三名， 將在「最終決選」分別獲得「3分」、「2分」、「1分」的額外加分。<br><br/>
+        <b>【抽獎獎項】</b><br/><br/>保誠創新智造所禮包 x 5名、家樂福100元禮券 x 5名。<br><br/>
+        <b>【抽獎方式】</b><br/><br/><span>投票時完整填寫姓名、手機號碼，就有機會參與抽獎。我們將抽出10名幸運兒，後續將直接連繫您禮物寄送事宜，並將於4/15（五）公告幸運兒名單於保誠創新智造所計畫網站。</span><br><br>
+        <b>【注意事項】</b><br/><br/><span class="li-style">以下團隊提案皆為隨機排列顯示。</span><span class="li-style">本活動獎項以主辦單位規劃獎品為準，中獎資格不得轉讓他人，所有獎品皆以實體為準，中獎者不得要求更換獎品、顏色及款式等或折換現金，主辦單位保留更換其他等值獎項之權利。</span><span class="li-style">本活動若有其他未盡事宜，活動辦法有任何變更或修改，依活動網站公告為主，不再另行通知。主辦單位保留取消、終止、修改或暫停本活動權利，並保有最終釋義權。</span><br>
       </p>
     </div>
     <div v-if="loading">Loading...</div>
@@ -125,7 +125,7 @@
           >回到提案總覽</a
         >
         <br /><br />
-        <a class="group-btn" href="javascript:;" @click="popclose"
+        <a class="group-btn" href="https://pcalifeinnovation.com.tw/"
           >保誠創新智造所</a
         >
       </div>
@@ -275,8 +275,8 @@ export default {
       }
     },
     timeCheck() {
-      let voteStart = new Date(2022, 3, 23, 0, 0, 0, 0);
-      let voteEnd = new Date(2022, 4, 6, 23, 59, 0, 0);
+      let voteStart = new Date(2022, 2, 22, 0, 0, 0, 0);
+      let voteEnd = new Date(2022, 3, 6, 23, 59, 0, 0);
       let now = new Date();
       // console.log(voteStart+"\n"+voteEnd+"\n"+now);
       if (now < voteStart) {
@@ -551,13 +551,42 @@ footer p {
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
-  line-height: 22px;
+  /* line-height: 22px; */
+  line-height: 1.2;
   text-align: center;
   letter-spacing: 0.135em;
   color: #000000;
   margin-bottom: 1rem;
+  width: 100%;
+  margin: 0 auto 1rem;
 }
+.title-box span{
+  text-align:left;
+  display: block;
+  position: relative;
+}
+.title-box .li-style{
+  padding-left:1em;
+  text-indent: 0em;
+}
+.title-box p span:nth-of-type(2)::before{
+  content:"1.";
 
+}
+.title-box p span:nth-of-type(3)::before{
+  content:"2.";
+
+}
+.title-box p span:nth-of-type(4)::before{
+  content:"3.";
+
+}
+.title-box p span::before{
+  display: inline-block;
+  width: 1em;
+  left: 0px;
+  position: absolute;
+}
 .vote-title::before {
   content: "";
   position: absolute;
